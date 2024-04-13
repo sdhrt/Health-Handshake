@@ -22,6 +22,11 @@ export const SignUpForm = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault()
+        ;(() => {
+            toast({
+                title: "Signing up...",
+            })
+        })()
         const response = await fetch("/api/signup", {
             method: "POST",
             headers: {
@@ -48,7 +53,8 @@ export const SignUpForm = () => {
             }
         }
         document.addEventListener("keydown", down)
-        return () => document.removeEventListener("keydown", down)
+        return () =>
+            document.removeEventListener("keydown", down)
     }, [input.email, input.password, input.name])
 
     return (
@@ -81,7 +87,9 @@ export const SignUpForm = () => {
                 />
             </div>
             <Button className="mt-4" onClick={handleSubmit}>
-                <span className="font-semibold">Sign Up</span>
+                <span className="font-semibold">
+                    Sign Up
+                </span>
             </Button>
         </div>
     )

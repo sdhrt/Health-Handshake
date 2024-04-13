@@ -10,7 +10,7 @@ import ConnectAlert from "./ConnectAlert"
 
 function OrganizationCard({ org }: { org: User }) {
     return (
-        <Card>
+        <Card className="last:min-w-[350px]">
                 <CardHeader>
                     <CardTitle>{org.name}</CardTitle>
                 </CardHeader>

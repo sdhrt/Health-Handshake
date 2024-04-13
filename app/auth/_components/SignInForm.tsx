@@ -25,6 +25,11 @@ export const SignInForm = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault()
+        ;(() => {
+            toast({
+                title: "Signing you in...",
+            })
+        })()
         if (input.email == "" && input.password == "") {
             return toast({
                 title: "Missing fields",
@@ -37,21 +42,16 @@ export const SignInForm = () => {
                 callbackUrl: `${window.location.origin}`,
                 redirect: false,
             })
-            ;(() => {
-                toast({
-                    title: "Signing you in...",
-                })
-            })()
-            setIsLoading(false)
             if (data?.error) {
                 return toast({
                     title: "Invalid credentials",
-                    description: data?.error,
+                    description: `${data?.error}: Your email or password doesn't match`,
                     duration: 6000,
                 })
             } else {
                 router.push("/dashboard")
             }
+            setIsLoading(false)
         }
     }
 
