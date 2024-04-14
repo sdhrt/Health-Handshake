@@ -8,7 +8,7 @@ async function page() {
 
     if (!session?.user) {
         return (
-            <div className="flex items-center justify-center h-screen">
+            <div className="flex items-center justify-center h-screen w-screen">
                 <Spinner size={"icon"} />
             </div>
         )

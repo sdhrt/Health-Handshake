@@ -9,7 +9,7 @@ function Navbar() {
     return (
         <nav className="flex items-center justify-between w-screen h-16 px-4 lg:px-24">
             <span className="font-bold md:text-xl">
-                <Link href="/dashboard">Health Handshake</Link>
+                <Link href="/">Health Handshake</Link>
             </span>
             <div className="flex gap-x-2 md:gap-x-8 items-center">
                 <MessagePopover />
