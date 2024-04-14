@@ -35,15 +35,14 @@ export const SignUpForm = () => {
             body: JSON.stringify({ input }),
         })
         const { ok, error } = await response.json()
-
-        if (error) {
-            return toast({
-                title: `${error}`,
-                duration: 2000,
-            })
-        }
         if (ok) {
             router.push("/auth/signin")
+        } else {
+            toast({
+                title: `${error}`,
+                duration: 2000,
+                variant: "destructive",
+            })
         }
     }
 
@@ -59,7 +58,7 @@ export const SignUpForm = () => {
     }, [input.email, input.password, input.name])
 
     return (
-        <div className="flex flex-col gap-y-4">
+        <form className="flex flex-col gap-y-4">
             <div className="flex flex-col gap-y-2">
                 <Label>Organization Name</Label>
                 <Input
@@ -92,7 +91,7 @@ export const SignUpForm = () => {
                     Sign Up
                 </span>
             </Button>
-        </div>
+        </form>
     )
 }
 
