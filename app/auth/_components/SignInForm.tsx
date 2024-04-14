@@ -44,11 +44,12 @@ export const SignInForm = () => {
                 redirect: false,
             })
             if (data?.error) {
-                return toast({
+                toast({
                     title: "Invalid credentials",
                     description: `${data?.error}: Your email or password doesn't match`,
                     duration: 6000,
                 })
+                setIsLoading(false)
             } else {
                 setIsLoading(false)
                 router.push("/dashboard")
@@ -69,7 +70,7 @@ export const SignInForm = () => {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center items-center h-screen">
+            <div className="flex justify-center items-center h-screen w-screen">
                 <Spinner size={"icon"} />
             </div>
         )
