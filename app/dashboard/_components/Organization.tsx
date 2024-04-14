@@ -28,7 +28,6 @@ function Organization({
             } else {
                 throw new Error("/api/fetch/users Organization.tsx fetch error")
             }
-            // setOrgs(JSON.parse())
         })()
     }, [])
 
