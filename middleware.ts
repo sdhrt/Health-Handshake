@@ -1,15 +1,41 @@
-import { getServerSession } from "next-auth"
-import { NextRequest, NextResponse } from "next/server"
-import { authOptions } from "./lib/auth"
-export { default } from "next-auth/middleware"
+import { getToken } from "next-auth/jwt"
+import { withAuth } from "next-auth/middleware"
+import { NextResponse } from "next/server"
 
-export const config = { matcher: ["/dashboard/:path*"] }
+export default withAuth(
+    async function middleware(req) {
+        const token = await getToken({ req })
+        const isAuth = !!token
+        const isAuthPage =
+            req.nextUrl.pathname.startsWith("/auth")
 
-export async function middleware(request: NextRequest) {
-    const session = getServerSession(authOptions)
-    if (session == null) {
-        return NextResponse.redirect(
-            new URL("/auth/signin", request.url)
-        )
+        if (isAuthPage) {
+            if (isAuth) {
+                return NextResponse.redirect(
+                    new URL("/dashboard", req.url)
+                )
+            }
+            return null
+        }
+
+        if (!isAuth) {
+            return NextResponse.redirect(
+                new URL("/auth/signin", req.url)
+            )
+        }
+    },
+    {
+        callbacks: {
+            async authorized() {
+                // This is a work-around for handling redirect on auth pages.
+                // We return true here so that the middleware function above
+                // is always called.
+                return true
+            },
+        },
     }
+)
+
+export const config = {
+    matcher: ["/dashboard/:path*", "/api/:path*"],
 }
