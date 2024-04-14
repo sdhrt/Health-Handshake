@@ -30,7 +30,7 @@ export const SignInForm = () => {
                 title: "Signing you in...",
             })
         })()
-        if (input.email == "" && input.password == "") {
+        if (input.email == "" || input.password == "") {
             return toast({
                 title: "Missing fields",
                 duration: 2000,
@@ -40,7 +40,7 @@ export const SignInForm = () => {
             setIsLoading(true)
             const data = await signIn("credentials", {
                 ...input,
-                callbackUrl: "/dashboard",
+                callbackUrl: `${window.location.origin}`,
                 redirect: false,
             })
             if (data?.error) {
