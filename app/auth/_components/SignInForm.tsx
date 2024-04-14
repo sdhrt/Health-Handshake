@@ -39,7 +39,6 @@ export const SignInForm = () => {
             setIsLoading(true)
             const data = await signIn("credentials", {
                 ...input,
-                callbackUrl: `${window.location.origin}`,
                 redirect: false,
             })
             if (data?.error) {
