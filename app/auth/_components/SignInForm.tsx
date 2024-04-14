@@ -38,9 +38,10 @@ export const SignInForm = () => {
             })
         } else {
             setIsLoading(true)
+            console.log(window.location.origin)
             const data = await signIn("credentials", {
                 ...input,
-                callbackUrl: `${window.location.origin}`,
+                callbackUrl: `${window.location.origin}/dashboard`,
                 redirect: false,
             })
             setIsLoading(false)
