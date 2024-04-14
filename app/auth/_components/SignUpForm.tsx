@@ -34,14 +34,15 @@ export const SignUpForm = () => {
             },
             body: JSON.stringify({ input }),
         })
-        const userInfo = await response.json()
-        if (userInfo.error) {
+        const { ok, error } = await response.json()
+
+        if (error) {
             return toast({
-                title: `${userInfo.error}`,
+                title: `${error}`,
                 duration: 2000,
             })
         }
-        if (userInfo) {
+        if (ok) {
             router.push("/auth/signin")
         }
     }

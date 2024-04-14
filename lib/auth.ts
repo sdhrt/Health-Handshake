@@ -1,6 +1,7 @@
 import { NextAuthOptions } from "next-auth"
 import { connectMongoDB } from "./mongodb"
 import { userModel } from "@/model/userModel"
+import bcrypt from "bcrypt"
 
 import CredentialsProvider from "next-auth/providers/credentials"
 
@@ -14,29 +15,38 @@ export const authOptions = {
             name: "credentials",
             credentials: {
                 email: { label: "email", type: "email" },
-                password: { label: "password", type: "password" },
+                password: {
+                    label: "password",
+                    type: "password",
+                },
             },
             async authorize(credentials) {
-                const { email, password } = credentials as any
+                const { email, password } =
+                    credentials as any
 
                 if (!email || !password) {
                     return null
                 }
 
                 await connectMongoDB()
-                const user = await userModel.findOne({ email })
+                const user = await userModel.findOne({
+                    email,
+                })
 
                 if (!user) {
                     throw new Error("User doesn't exist")
                 }
 
-                const passMatch = user.password == password
-
-                if (!passMatch) {
-                    throw new Error("Password doesn't match")
+                const result = await bcrypt.compare(
+                    password,
+                    user.password
+                )
+                if (!result) {
+                    throw new Error(
+                        "Error while validating password"
+                    )
                 }
-
-                return user
+                if (result) return user
             },
         }),
     ],
