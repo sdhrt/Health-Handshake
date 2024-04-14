@@ -51,6 +51,7 @@ export const SignInForm = () => {
             } else {
                 router.push("/dashboard")
             }
+            setIsLoading(false)
         }
     }
 
