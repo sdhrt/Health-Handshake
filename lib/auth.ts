@@ -41,12 +41,13 @@ export const authOptions = {
                     password,
                     user.password
                 )
-                if (!result) {
+                if (result) {
+                    return user
+                } else {
                     throw new Error(
-                        "Error while validating password"
+                        "Password doesn't match"
                     )
                 }
-                if (result) return user
             },
         }),
     ],

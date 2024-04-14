@@ -16,7 +16,7 @@ export default async function AuthPage() {
     const session = await getServerSession(authOptions)
 
     if (session) {
-        redirect("/")
+        redirect("/dashboard")
     }
 
     return (
@@ -25,7 +25,8 @@ export default async function AuthPage() {
                 <CardHeader>
                     <CardTitle>Log in</CardTitle>
                     <CardDescription>
-                        Login in order to access Health Handshake
+                        Login in order to access Health
+                        Handshake
                     </CardDescription>
                 </CardHeader>
                 <CardContent>

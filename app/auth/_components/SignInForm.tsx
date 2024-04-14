@@ -30,10 +30,11 @@ export const SignInForm = () => {
                 title: "Signing you in...",
             })
         })()
-        if (input.email == "" && input.password == "") {
+        if (input.email == "" || input.password == "") {
             return toast({
                 title: "Missing fields",
                 duration: 2000,
+                variant: "destructive",
             })
         } else {
             setIsLoading(true)
@@ -42,19 +43,21 @@ export const SignInForm = () => {
                 callbackUrl: `${window.location.origin}`,
                 redirect: false,
             })
-            if (data?.error) {
-                return toast({
-                    title: "Invalid credentials",
-                    description: `${data?.error}: Your email or password doesn't match`,
-                    duration: 6000,
-                })
-            } else {
-                router.push("/dashboard")
-            }
             setIsLoading(false)
+            if (data?.status === 200) {
+                router.push("/dashboard")
+            } else {
+                toast({
+                    title: "Couldn't sign in",
+                    description: `${data?.error}`,
+                    duration: 6000,
+                    variant: "destructive",
+                })
+            }
         }
     }
 
+    // This useEffect attaches an event listener for form to work when pressing enter
     useEffect(() => {
         const down = (e: KeyboardEvent) => {
             if (e.key == "Enter") {
@@ -68,13 +71,16 @@ export const SignInForm = () => {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center items-center h-screen">
+            <div className="flex justify-center items-center h-screen w-screen">
                 <Spinner size={"icon"} />
             </div>
         )
     }
     return (
-        <div className="flex flex-col gap-y-4">
+        <form
+            className="flex flex-col gap-y-4"
+            onSubmit={handleSubmit}
+        >
             <div className="flex flex-col gap-y-2">
                 <Label>Organization Email</Label>
                 <Input
@@ -93,12 +99,9 @@ export const SignInForm = () => {
                     onChange={handleChange}
                 />
             </div>
-            <Button
-                className="mt-4"
-                onClick={(e) => handleSubmit(e)}
-            >
+            <Button className="mt-4" type="submit">
                 <span className="font-bold">Log in</span>
             </Button>
-        </div>
+        </form>
     )
 }
