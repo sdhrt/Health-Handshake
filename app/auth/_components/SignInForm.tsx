@@ -34,12 +34,13 @@ export const SignInForm = () => {
             return toast({
                 title: "Missing fields",
                 duration: 2000,
+                variant: "destructive",
             })
         } else {
             setIsLoading(true)
             const data = await signIn("credentials", {
                 ...input,
-                callbackUrl: `${window.location.origin}`,
+                callbackUrl: "/dashboard",
                 redirect: false,
             })
             if (data?.error) {
@@ -49,9 +50,9 @@ export const SignInForm = () => {
                     duration: 6000,
                 })
             } else {
+                setIsLoading(false)
                 router.push("/dashboard")
             }
-            setIsLoading(false)
         }
     }
 
