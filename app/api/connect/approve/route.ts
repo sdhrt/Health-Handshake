@@ -13,7 +13,6 @@ export async function POST(req: NextRequest) {
             approved: true,
         }
     )
-    console.log(connect)
     if (connect) {
         return NextResponse.json({
             data: {
