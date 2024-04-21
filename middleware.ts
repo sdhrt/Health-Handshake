@@ -2,14 +2,6 @@ import { getToken } from "next-auth/jwt"
 import { withAuth } from "next-auth/middleware"
 import { NextResponse } from "next/server"
 
-export const config = {
-    matcher: [
-        "/dashboard/:path*",
-        "/admin/:path*",
-        "/api/:path*",
-    ],
-}
-
 export default withAuth(
     async function middleware(req) {
         const token = await getToken({ req })
@@ -43,3 +35,11 @@ export default withAuth(
         },
     }
 )
+
+export const config = {
+    matcher: [
+        "/dashboard/:path*",
+        "/admin/:path*",
+        "/((?!api|_next|.*\\..*).*)",
+    ],
+}
