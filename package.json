@@ -5,6 +5,7 @@
         "name": "Siddhartha Shrestha",
         "url": "github.com/sdhrt/healthhandshake"
     },
+    "creator": "Siddhartha Shrestha",
     "private": true,
     "scripts": {
         "dev": "next dev",
