@@ -1,4 +1,4 @@
-import { Home, Settings } from "lucide-react"
+import { Home, Settings, Activity } from "lucide-react"
 import Link from "next/link"
 import React from "react"
 
@@ -7,7 +7,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip"
-import Signout from "../Signout"
+import SignOutButton from "@/app/dashboard/_components/Navbar/SignOutButton"
 
 function Nav() {
     return (
@@ -17,24 +17,47 @@ function Nav() {
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <Link
-                                href="/admin/dashboard"
+                                href="/admin"
                                 className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                             >
                                 <Home className="h-5 w-5" />
+                                <span className="sr-only">
+                                    Home
+                                </span>
+                            </Link>
+                        </TooltipTrigger>
+                        <TooltipContent side="right">
+                            Home
+                        </TooltipContent>
+                    </Tooltip>
+                </nav>
+                <nav className="flex flex-col items-center gap-4 px-2 sm:py-4">
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Link
+                                href="/admin/dashboard"
+                                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                            >
+                                <Activity className="h-5 w-5" />
                                 <span className="sr-only">
                                     Dashboard
                                 </span>
                             </Link>
                         </TooltipTrigger>
                         <TooltipContent side="right">
-                            Dashboard
+                            Connections
                         </TooltipContent>
                     </Tooltip>
                 </nav>
                 <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-4">
-                    <div>
-                        <Signout />
-                    </div>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <SignOutButton />
+                        </TooltipTrigger>
+                        <TooltipContent side="right">
+                            Sign Out
+                        </TooltipContent>
+                    </Tooltip>
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <Link

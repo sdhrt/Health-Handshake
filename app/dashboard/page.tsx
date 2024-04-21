@@ -11,7 +11,7 @@ async function page() {
             session?.user?.email as string
         )
         if (isAdmin) {
-            redirect("/admin/dashboard")
+            redirect("/admin")
         }
     }
     return (

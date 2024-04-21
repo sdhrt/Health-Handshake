@@ -19,7 +19,7 @@ function InstituteOrg({
     const name = data?.user?.name
 
     return (
-        <div>
+        <div className="">
             {orgs &&
                 orgs.map((org: Org) => {
                     const industryFilter =

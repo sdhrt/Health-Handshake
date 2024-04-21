@@ -9,6 +9,7 @@ export interface UserData {
 export interface User extends Document {
     name: string
     password: string
+    bio: string
     email: string
     data: UserData
     isAdmin: boolean

@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(req: NextRequest) {
     const body = await req.json()
-    const { category } = body
+    const { category }: { category: string } = body
 
     try {
         await connectMongoDB()
@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
             const users = await userModel
                 .find()
                 .select("-password")
+                .sort({ createdAt: -1 })
             return NextResponse.json({
                 status: 200,
                 data: users,

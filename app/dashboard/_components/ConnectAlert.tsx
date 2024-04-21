@@ -63,7 +63,12 @@ function ConnectAlert({ org }: { org: User }) {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <Button variant="outline">Connect</Button>
+                <Button
+                    variant="outline"
+                    className="bg-[#218aff] text-[#fafaff] rounded-sm"
+                >
+                    Connect
+                </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>

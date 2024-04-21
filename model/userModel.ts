@@ -1,14 +1,9 @@
-import { UserData } from "@/types/userModelInterface"
 import mongoose from "mongoose"
 const { Schema } = mongoose
 
 mongoose.Promise = global.Promise
 
 const userDataSchema = new Schema({
-    temp: {
-        type: String,
-        default: "temp",
-    },
     category: {
         type: String,
         enum: ["health", "institution", "government"],
@@ -56,6 +51,9 @@ const userSchema = new Schema(
         email: {
             type: String,
             required: true,
+        },
+        bio: {
+            type: String,
         },
         isAdmin: {
             type: Boolean,

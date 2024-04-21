@@ -23,7 +23,7 @@ function HealthOrg({
         <div
             className={cn(
                 category == "institute" &&
-                    "grid grid-cols-3 gap-2"
+                    "grid grid-cols-3 gap-5"
             )}
         >
             {orgs &&

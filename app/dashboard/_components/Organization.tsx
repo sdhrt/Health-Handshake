@@ -50,7 +50,7 @@ function Organization({
         <div className="w-screen flex justify-evenly h-screen">
             {category == "health" && (
                 <>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col items-center">
                         <span className="text-2xl font-semibold py-4">
                             Institutes
                         </span>

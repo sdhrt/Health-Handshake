@@ -18,7 +18,7 @@ function FilterSearch({
         <div>
             <Input
                 onChange={handleChange}
-                placeholder="Search"
+                placeholder="Search for companies.."
             />
         </div>
     )

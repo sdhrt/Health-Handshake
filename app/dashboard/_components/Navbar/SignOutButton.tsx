@@ -12,7 +12,11 @@ function SignOutButton() {
     }
 
     return (
-        <Button onClick={handleSignOut}>
+        <Button
+            onClick={handleSignOut}
+            variant={"ghost"}
+            className="text-muted-foreground"
+        >
             <LogOutIcon />
         </Button>
     )
