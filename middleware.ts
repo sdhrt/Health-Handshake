@@ -1,6 +1,5 @@
 import { getToken } from "next-auth/jwt"
 import { withAuth } from "next-auth/middleware"
-// export { default } from "next-auth/middleware"
 import { NextRequest, NextResponse } from "next/server"
 
 export const config = {
@@ -16,14 +15,14 @@ export default withAuth(async function middleware(
     const isAuthPage =
         req.nextUrl.pathname.startsWith("/auth")
 
-    if (isAuthPage) {
-        if (isAuth) {
-            return NextResponse.redirect(
-                new URL("/dashboard", req.url)
-            )
-        }
-        return null
-    }
+    // if (isAuthPage) {
+    //     if (isAuth) {
+    //         return NextResponse.redirect(
+    //             new URL("/dashboard", req.url)
+    //         )
+    //     }
+    //     return null
+    // }
 
     if (!isAuth) {
         return NextResponse.redirect(
