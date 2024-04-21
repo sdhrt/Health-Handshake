@@ -7,21 +7,28 @@ import { toast } from "@/components/ui/use-toast"
 import { Plus, Trash } from "lucide-react"
 import { useEffect, useState } from "react"
 
-function UpdateServices({ userEmail }: { userEmail: string }) {
-    const [input, setInput] = useState<string>()
+function UpdateServices({
+    userEmail,
+}: {
+    userEmail: string
+}) {
+    const [input, setInput] = useState<string>("")
     const [services, setServices] = useState([])
 
     useEffect(() => {
         ;(async () => {
-            const response = await fetch("/api/fetch/services", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: userEmail,
-                }),
-            })
+            const response = await fetch(
+                "/api/fetch/services",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: userEmail,
+                    }),
+                }
+            )
             const { data } = await response.json()
             setServices(data.services)
         })()
@@ -32,19 +39,23 @@ function UpdateServices({ userEmail }: { userEmail: string }) {
     }
 
     const addService = async () => {
-        const response = await fetch("/api/update/services", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                service: input,
-                email: userEmail,
-            }),
-        })
+        const response = await fetch(
+            "/api/update/services",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    service: input,
+                    email: userEmail,
+                }),
+            }
+        )
 
         const { data } = await response.json()
         if (data.message) {
+            setInput("")
             return toast({
                 title: data.message,
             })
@@ -53,11 +64,12 @@ function UpdateServices({ userEmail }: { userEmail: string }) {
 
     return (
         <div>
-            <div className="flex justify-between items-center mt-10 max-w-[100%]">
+            <div className="flex justify-between items-center mt-2 max-w-[100%]">
                 <Label>Service</Label>
                 <div className="flex">
                     <Input
                         className="mr-1"
+                        value={input}
                         onChange={handleChange}
                         placeholder="Add service..."
                     />
@@ -66,23 +78,24 @@ function UpdateServices({ userEmail }: { userEmail: string }) {
                     </Button>
                 </div>
             </div>
-
-            <div className="flex flex-col items-end">
-                <div></div>
-
+            <div className="flex flex-wrap max-w-[80%] break-all gap-1 mt-1">
                 {services &&
                     services.map((service, index) => (
-                        <div key={index} className="flex items-center mt-2">
-                            <Label className="px-4 text-md">{service}</Label>
-                            <Button
+                        <div
+                            key={index}
+                            className="flex items-center bg-neutral-200 rounded-sm w-fit px-1 gap-1"
+                        >
+                            <span>{service}</span>
+                            <div
+                                className="hover:cursor-pointer font-bold text-red-900"
                                 onClick={() =>
                                     toast({
                                         title: "Functionality not implemented",
                                     })
                                 }
                             >
-                                <Trash className="" size={16} />
-                            </Button>
+                                x
+                            </div>
                         </div>
                     ))}
             </div>

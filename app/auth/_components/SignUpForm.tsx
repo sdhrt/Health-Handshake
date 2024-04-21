@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import GoogleLogin from "./GoogleLogin"
 
 export const SignUpForm = () => {
     const router = useRouter()
@@ -27,22 +28,34 @@ export const SignUpForm = () => {
                 title: "Signing up...",
             })
         })()
-        const response = await fetch("/api/signup", {
+        const response = await fetch("/api/auth/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ input }),
         })
-        const { ok, error } = await response.json()
-        if (ok) {
-            router.push("/auth/signin")
-        } else {
+        if (!response.ok) {
             toast({
-                title: `${error}`,
+                title: "Something went wrong",
                 duration: 2000,
                 variant: "destructive",
             })
+        } else {
+            try {
+                const { ok, error } = await response.json()
+                if (ok) {
+                    router.push("/auth/signin")
+                } else {
+                    toast({
+                        title: `${error}`,
+                        duration: 2000,
+                        variant: "destructive",
+                    })
+                }
+            } catch (error) {
+                throw error
+            }
         }
     }
 
@@ -55,10 +68,10 @@ export const SignUpForm = () => {
         document.addEventListener("keydown", down)
         return () =>
             document.removeEventListener("keydown", down)
-    }, [input.email, input.password, input.name])
+    }, [input])
 
     return (
-        <form className="flex flex-col gap-y-4">
+        <div className="flex flex-col gap-y-4">
             <div className="flex flex-col gap-y-2">
                 <Label>Organization Name</Label>
                 <Input
@@ -91,7 +104,8 @@ export const SignUpForm = () => {
                     Sign Up
                 </span>
             </Button>
-        </form>
+            <GoogleLogin />
+        </div>
     )
 }
 

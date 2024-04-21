@@ -11,8 +11,8 @@ async function page() {
     const userEmail: string = session?.user?.email as string
 
     return (
-        <div className="flex justify-center items-start py-20 h-screen px-8">
-            <div>
+        <div className="mt-6 flex justify-center">
+            <div className="grid grid-cols-1 w-[30%]">
                 <UpdateInfo />
                 <UpdateIndustry userEmail={userEmail} />
                 <UpdateLocation userEmail={userEmail} />

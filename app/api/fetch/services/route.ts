@@ -20,5 +20,15 @@ export async function POST(request: NextRequest) {
     const { data } = await userModel
         .findOne({ email })
         .select("data.services")
-    return NextResponse.json({ status: 200, data: data })
+    if (data) {
+        return NextResponse.json({
+            status: 200,
+            data: data,
+        })
+    } else {
+        return NextResponse.json({
+            status: 200,
+            data: [],
+        })
+    }
 }

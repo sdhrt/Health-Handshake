@@ -1,9 +1,17 @@
 import { getToken } from "next-auth/jwt"
 import { withAuth } from "next-auth/middleware"
-import { NextResponse } from "next/server"
+// export { default } from "next-auth/middleware"
+import { NextRequest, NextResponse } from "next/server"
 
-export default withAuth(async function middleware(req) {
+export const config = {
+    matcher: ["/dashboard/:path*", "/api/:path*"],
+}
+
+export default withAuth(async function middleware(
+    req: NextRequest
+) {
     const token = await getToken({ req })
+
     const isAuth = !!token
     const isAuthPage =
         req.nextUrl.pathname.startsWith("/auth")
@@ -25,7 +33,3 @@ export default withAuth(async function middleware(req) {
 
     return NextResponse.next()
 })
-
-export const config = {
-    matcher: ["/dashboard/:path*", "/api/:path*"],
-}

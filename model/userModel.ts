@@ -1,36 +1,75 @@
+import { UserData } from "@/types/userModelInterface"
 import mongoose from "mongoose"
 const { Schema } = mongoose
 
 mongoose.Promise = global.Promise
 
 const userDataSchema = new Schema({
-    industry: String,
-    location: String,
+    temp: {
+        type: String,
+        default: "temp",
+    },
+    category: {
+        type: String,
+        enum: ["health", "institution", "government"],
+    },
+    industry: {
+        type: String,
+        default: "",
+    },
+    location: {
+        type: String,
+        default: "",
+    },
     services: {
         type: [String],
         unique: true,
+        default: [],
     },
     contact: {
         type: [String],
         unique: true,
+        default: [],
     },
 })
 
-const userSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
+const connectionSchema = new Schema({
+    connection: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Connection",
     },
-    password: {
+    role: {
         type: String,
-        required: true,
+        enum: ["sender", "reciever"],
     },
-    email: {
-        type: String,
-        required: true,
-    },
-    data: userDataSchema,
 })
+
+const userSchema = new Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+        },
+        password: {
+            type: String,
+        },
+        email: {
+            type: String,
+            required: true,
+        },
+        isAdmin: {
+            type: Boolean,
+            default: false,
+        },
+        data: userDataSchema,
+        connections: {
+            type: [connectionSchema],
+            default: [],
+        },
+    },
+    { timestamps: true }
+)
 
 export const userModel =
-    mongoose.models.User || mongoose.model("User", userSchema)
+    mongoose.models.User ||
+    mongoose.model("User", userSchema)

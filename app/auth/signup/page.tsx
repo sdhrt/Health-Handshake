@@ -20,7 +20,7 @@ export default async function AuthPage() {
     }
 
     return (
-        <div className="w-screen h-screen flex items-center justify-center">
+        <div className="w-screen h-screen flex items-center justify-center bg-[url('/images/login-background.jpg')] bg-center bg-cover">
             <Card className="w-screen mx-12 md:w-[400px] md:mx-0">
                 <CardHeader>
                     <CardTitle>Sign Up</CardTitle>

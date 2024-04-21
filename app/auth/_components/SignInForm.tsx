@@ -8,6 +8,7 @@ import { toast } from "@/components/ui/use-toast"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import GoogleLogin from "./GoogleLogin"
 
 export const SignInForm = () => {
     const router = useRouter()
@@ -38,7 +39,6 @@ export const SignInForm = () => {
             })
         } else {
             setIsLoading(true)
-            console.log(window.location.origin)
             const data = await signIn("credentials", {
                 ...input,
                 callbackUrl: `${window.location.origin}/dashboard`,
@@ -78,10 +78,7 @@ export const SignInForm = () => {
         )
     }
     return (
-        <form
-            className="flex flex-col gap-y-4"
-            onSubmit={handleSubmit}
-        >
+        <div className="flex flex-col gap-y-4">
             <div className="flex flex-col gap-y-2">
                 <Label>Organization Email</Label>
                 <Input
@@ -100,9 +97,10 @@ export const SignInForm = () => {
                     onChange={handleChange}
                 />
             </div>
-            <Button className="mt-4" type="submit">
+            <Button className="mt-4" onClick={handleSubmit}>
                 <span className="font-bold">Log in</span>
             </Button>
-        </form>
+            <GoogleLogin />
+        </div>
     )
 }

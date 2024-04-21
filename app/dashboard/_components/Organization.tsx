@@ -1,59 +1,82 @@
 import { useEffect, useState } from "react"
-import OrganizationCard from "./OrganizationCard"
 import { User } from "@/types/userModelInterface"
-import { useSession } from "next-auth/react"
-import { CircleSlash } from "lucide-react"
+import InstituteOrg from "./InstituteOrg"
+import HealthOrg from "./HealthOrg"
+import { Separator } from "@/components/ui/separator"
 
-interface Org extends User {
+export interface Org extends User {
     _id: string
 }
 
 function Organization({
+    search,
     industry,
     services,
+    category,
 }: {
+    search: string
     industry: string
     services: string[]
+    category: string
 }) {
-    const [orgs, setOrgs] = useState<any>()
-    const { data } = useSession()
-    const name = data?.user?.name
+    const [orgs, setOrgs] = useState<Org[]>()
 
     useEffect(() => {
         ;(async () => {
-            const response = await fetch("/api/fetch/users", { method: "GET" })
+            const response = await fetch(
+                "/api/fetch/users",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        category: category,
+                    }),
+                }
+            )
             const responseData = await response.json()
             if (responseData.status == 200) {
                 setOrgs(responseData.data)
             } else {
-                throw new Error("/api/fetch/users Organization.tsx fetch error")
+                throw new Error(
+                    "/api/fetch/users Organization.tsx fetch error"
+                )
             }
         })()
     }, [])
 
     return (
-        <div className="grid grid-col-1 md:grid-cols-3 lg:grid-cols-3 lg:max-w-[60vw] gap-4">
-            {name && (
-                <div className="hidden last:flex w-screen items-center justify-center lg:justify-start lg:items-start gap-4">
-                    <CircleSlash />
-                    <span className="text-xl font-bold ">
-                        No Organization matches the filter
-                    </span>
-                </div>
+        <div className="w-screen flex justify-evenly h-screen">
+            {category == "health" && (
+                <>
+                    <div className="flex flex-col">
+                        <span className="text-2xl font-semibold py-4">
+                            Institutes
+                        </span>
+                        <InstituteOrg
+                            orgs={orgs as Org[]}
+                            search={search}
+                            category={category}
+                            industry={industry}
+                            services={services}
+                        />
+                    </div>
+                    <Separator orientation="vertical" />
+                </>
             )}
-            {orgs &&
-                orgs.map((org: Org) => {
-                    if (
-                        name != org.name &&
-                        (!industry || org.data.industry === industry) &&
-                        (services.length == 0 ||
-                            services.some((service) =>
-                                org.data.services.includes(service)
-                            ))
-                    ) {
-                        return <OrganizationCard org={org} key={org._id} />
-                    }
-                })}
+            <div className="flex flex-col items-center">
+                <span className="text-2xl font-semibold py-4">
+                    Health
+                </span>
+                <HealthOrg
+                    orgs={orgs as Org[]}
+                    search={search}
+                    category={category}
+                    industry={industry}
+                    services={services}
+                />
+            </div>
         </div>
     )
 }

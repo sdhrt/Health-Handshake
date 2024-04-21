@@ -10,50 +10,56 @@ import ConnectAlert from "./ConnectAlert"
 
 function OrganizationCard({ org }: { org: User }) {
     return (
-        <Card className="last:min-w-[350px]">
-                <CardHeader>
-                    <CardTitle>{org.name}</CardTitle>
-                </CardHeader>
+        <Card className="shadow-lg w-64 min-w-64 my-2">
+            <CardHeader>
+                <CardTitle className=" text-[#141920]">
+                    {org.name}
+                </CardTitle>
+            </CardHeader>
 
-                <CardContent className="flex flex-col gap-y-2">
-                    <div className=" flex items-center space-x-4 rounded-md border p-4">
-                        <div className="flex-1 space-y-1">
-                            <p className="text-sm text-muted-foreground">
-                                Industry
-                            </p>
-                            <p className="text-md font-semibold leading-none">
-                                {org.data.industry ? org.data.industry : "..."}
-                            </p>
-                        </div>
+            <CardContent className="flex flex-col gap-y-2">
+                <div className=" flex items-center space-x-4 rounded-md border p-4">
+                    <div className="flex-1 space-y-1">
+                        <p className="text-sm text-muted-foreground">
+                            Industry
+                        </p>
+                        <p className="text-md font-semibold leading-none">
+                            {org.data.industry
+                                ? org.data.industry
+                                : "..."}
+                        </p>
                     </div>
-                    <div className=" flex items-center space-x-4 rounded-md border p-4">
-                        <div className="flex-1 space-y-1">
-                            <p className="text-sm text-muted-foreground">
-                                Services
-                            </p>
-                            {org.data.services ? (
-                                Object.values(org.data.services).map(
-                                    (service, index) => (
-                                        <p
-                                            key={index}
-                                            className="text-md font-semibold leading-none"
-                                        >
-                                            {service ? `${service}` : "..."}
-                                        </p>
-                                    )
-                                )
-                            ) : (
-                                <p className="text-md font-semibold leading-none">
-                                    ..
+                </div>
+                <div className=" flex items-center space-x-4 rounded-md border p-4">
+                    <div className="flex-1 space-y-1">
+                        <p className="text-sm text-muted-foreground">
+                            Services
+                        </p>
+                        {org.data.services ? (
+                            Object.values(
+                                org.data.services
+                            ).map((service, index) => (
+                                <p
+                                    key={index}
+                                    className="text-md font-semibold leading-none"
+                                >
+                                    {service
+                                        ? `${service}`
+                                        : "..."}
                                 </p>
-                            )}
-                        </div>
+                            ))
+                        ) : (
+                            <p className="text-md font-semibold leading-none">
+                                ..
+                            </p>
+                        )}
                     </div>
-                </CardContent>
+                </div>
+            </CardContent>
 
-                <CardFooter>
-                    <ConnectAlert org={org} />
-                </CardFooter>
+            <CardFooter>
+                <ConnectAlert org={org} />
+            </CardFooter>
         </Card>
     )
 }

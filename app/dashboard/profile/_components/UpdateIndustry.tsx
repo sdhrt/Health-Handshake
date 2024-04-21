@@ -49,7 +49,7 @@ function UpdateIndustry({ userEmail }: { userEmail: string }) {
         })
     }
     return (
-        <div className="flex items-center justify-between mt-10">
+        <div className="flex items-center justify-between mt-2">
             <Label htmlFor="industry">Select Industry:</Label>
             <Select name="industry" onValueChange={handleSelect}>
                 <SelectTrigger className="w-[240px]">

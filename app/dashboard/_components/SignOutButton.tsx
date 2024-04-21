@@ -1,19 +1,19 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { LogOutIcon } from "lucide-react"
 import { signOut } from "next-auth/react"
-import { useRouter } from "next/navigation"
 
 function SignOutButton() {
-    const router = useRouter()
     const handleSignOut = async () => {
-        await signOut()
-        router.push("/")
+        await signOut({
+            callbackUrl: "/auth/signin",
+        })
     }
 
     return (
         <Button onClick={handleSignOut}>
-            <span className="font-semibold">Sign Out</span>
+            <LogOutIcon />
         </Button>
     )
 }

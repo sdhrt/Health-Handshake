@@ -48,9 +48,9 @@ function UpdateInfo() {
         }
     }
     return (
-        <div className="flex ">
-            <div className="flex flex-col gap-y-2 bg-neutral-100 py-20 px-10 rounded-lg">
-                <div className="flex  items-center">
+        <div>
+            <div className="flex flex-col px-4 py-6 gap-y-2 bg-neutral-100 rounded-lg">
+                <div className="flex items-center">
                     <Label className="text-nowrap min-w-[50%]">
                         Organization Name
                     </Label>
@@ -76,8 +76,10 @@ function UpdateInfo() {
                         autoComplete="off"
                     />
                 </div>
-                <Button className="mt-4" onClick={handleSubmit}>
-                    <span className="font-semibold">Update</span>
+                <Button className="" onClick={handleSubmit}>
+                    <span className="font-semibold">
+                        Update
+                    </span>
                 </Button>
             </div>
         </div>

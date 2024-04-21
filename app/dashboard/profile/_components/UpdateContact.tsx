@@ -4,24 +4,31 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
-import { Plus, Trash } from "lucide-react"
+import { Plus } from "lucide-react"
 import { useEffect, useState } from "react"
 
-function UpdateContact({ userEmail }: { userEmail: string }) {
-    const [input, setInput] = useState<string>()
+function UpdateContact({
+    userEmail,
+}: {
+    userEmail: string
+}) {
+    const [input, setInput] = useState<string>("")
     const [contact, setContact] = useState<string[]>()
 
     useEffect(() => {
         ;(async () => {
-            const response = await fetch("/api/fetch/contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    email: userEmail,
-                }),
-            })
+            const response = await fetch(
+                "/api/fetch/contact",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        email: userEmail,
+                    }),
+                }
+            )
             const responseData = await response.json()
             setContact(responseData.data.contact)
         })()
@@ -32,16 +39,19 @@ function UpdateContact({ userEmail }: { userEmail: string }) {
     }
 
     const addContact = async () => {
-        const response = await fetch("/api/update/contact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                contact: input,
-                email: userEmail,
-            }),
-        })
+        const response = await fetch(
+            "/api/update/contact",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    contact: input,
+                    email: userEmail,
+                }),
+            }
+        )
 
         const responseData = await response.json()
 
@@ -55,10 +65,11 @@ function UpdateContact({ userEmail }: { userEmail: string }) {
 
     return (
         <div>
-            <div className="flex justify-between items-center mt-10 max-w-[100%]">
+            <div className="flex justify-between items-center mt-2">
                 <Label>Contact</Label>
                 <div className="flex">
                     <Input
+                        value={input}
                         className="mr-1"
                         onChange={handleChange}
                         placeholder="Add number..."
@@ -68,22 +79,24 @@ function UpdateContact({ userEmail }: { userEmail: string }) {
                     </Button>
                 </div>
             </div>
-            <div className="flex flex-col items-end">
-                <div></div>
-
+            <div className="flex flex-wrap max-w-[80%] break-all gap-1 mt-1">
                 {contact &&
                     contact.map((num, index) => (
-                        <div key={index} className="flex items-center mt-2">
-                            <Label className="px-4 text-md">{num}</Label>
-                            <Button
+                        <div
+                            key={index}
+                            className="flex items-center bg-neutral-200 rounded-sm w-fit px-1 gap-1"
+                        >
+                            <span>{num}</span>
+                            <div
+                                className="hover:cursor-pointer font-bold text-red-900"
                                 onClick={() =>
                                     toast({
                                         title: "Functionality not implemented",
                                     })
                                 }
                             >
-                                <Trash className="" size={16} />
-                            </Button>
+                                x
+                            </div>
                         </div>
                     ))}
             </div>

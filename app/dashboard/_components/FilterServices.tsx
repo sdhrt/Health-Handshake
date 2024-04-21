@@ -5,6 +5,7 @@ import {
     ToggleGroup,
     ToggleGroupItem,
 } from "@/components/ui/toggle-group"
+import { Input } from "@/components/ui/input"
 
 function FilterServices({
     setServices,
@@ -13,6 +14,8 @@ function FilterServices({
 }) {
     const [filterServices, setFilterServices] =
         useState<string[]>()
+
+    const [search, setSearch] = useState<string>("")
 
     useEffect(() => {
         ;(async () => {
@@ -32,13 +35,19 @@ function FilterServices({
     }
 
     return (
-        <div className="p-4 border border-gray-200 rounded-md max-h-[60vh] overflow-y-scroll shadow hover:shadow-inner  hover:shadow-gray-200/60 md:max-h-none">
-            <h4 className="flex justify-center font-semibold">
+        <div className="">
+            <h4 className="font-semibold mb-2">
                 Filter by services
             </h4>
+            <Input
+                className="mb-2"
+                placeholder="Search for services.."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+            />
             <ToggleGroup
                 type="multiple"
-                className="grid md:grid-cols-5 lg:grid-cols-3 gap-4 mt-4"
+                className="flex flex-col items-start"
                 onValueChange={handleChange}
             >
                 {filterServices &&
@@ -46,16 +55,29 @@ function FilterServices({
                         (
                             service: string,
                             index: number
-                        ) => (
-                            <ToggleGroupItem
-                                value={service}
-                                key={index}
-                                aria-label={service}
-                                className="text-xs tracking-tight block overflow-hidden hover:overflow-visible"
-                            >
-                                {service}
-                            </ToggleGroupItem>
-                        )
+                        ) => {
+                            if (
+                                service
+                                    .toLowerCase()
+                                    .includes(
+                                        search.toLowerCase()
+                                    )
+                            ) {
+                                return (
+                                    <ToggleGroupItem
+                                        variant={"outline"}
+                                        size={"sm"}
+                                        value={service}
+                                        key={index}
+                                        aria-label={service}
+                                        className="truncate"
+                                        asChild
+                                    >
+                                        <div>{service}</div>
+                                    </ToggleGroupItem>
+                                )
+                            }
+                        }
                     )}
             </ToggleGroup>
         </div>

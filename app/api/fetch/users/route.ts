@@ -1,12 +1,31 @@
 import { connectMongoDB } from "@/lib/mongodb"
 import { userModel } from "@/model/userModel"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export async function GET() {
+export async function POST(req: NextRequest) {
+    const body = await req.json()
+    const { category } = body
+
     try {
         await connectMongoDB()
-        const users = await userModel.find()
-        return NextResponse.json({ status: 200, data: users })
+
+        if (category == "institute") {
+            const users = await userModel
+                .find({ "data.category": "health" })
+                .select("-password")
+            return NextResponse.json({
+                status: 200,
+                data: users,
+            })
+        } else {
+            const users = await userModel
+                .find()
+                .select("-password")
+            return NextResponse.json({
+                status: 200,
+                data: users,
+            })
+        }
     } catch (error) {
         throw error
     }

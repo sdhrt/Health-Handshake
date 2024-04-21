@@ -4,7 +4,10 @@ import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
     const body = await request.json()
-    const { service, email }: { service: string; email: string } = body
+    const {
+        service,
+        email,
+    }: { service: string; email: string } = body
 
     await connectMongoDB()
 

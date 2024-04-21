@@ -13,6 +13,13 @@ export async function POST(request: NextRequest) {
         })
     }
 
+    const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+    if (!emailPattern.test(email)) {
+        return NextResponse.json({
+            error: `${email} isn't a valid email address.`,
+        })
+    }
+
     await connectMongoDB()
     const exists = await userModel.findOne({ email })
     if (exists) {
@@ -30,6 +37,12 @@ export async function POST(request: NextRequest) {
         data,
     })
     if (user) {
-        return NextResponse.json({ ok: true })
+        return NextResponse.json(
+            { ok: true },
+            { statusText: "User created" }
+        )
     }
+    return NextResponse.json({
+        error: "Something went wrong",
+    })
 }
