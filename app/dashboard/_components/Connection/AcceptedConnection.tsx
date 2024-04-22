@@ -4,7 +4,6 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Spinner } from "@/components/ui/spinner"
 import { toast } from "@/components/ui/use-toast"
-import { Divide } from "lucide-react"
 import { useEffect, useState } from "react"
 
 interface User {

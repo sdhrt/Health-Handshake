@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
     })
     const connectSend = await connectModel.find({
         sender: email,
+        $or: [{ adminApprove: false }, { approve: false }],
     })
     return NextResponse.json({
         data: {

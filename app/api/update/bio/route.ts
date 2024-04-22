@@ -15,7 +15,6 @@ export async function POST(request: NextRequest) {
             { bio: bio },
             { new: true }
         )
-        console.log(user)
         return NextResponse.json({
             status: 200,
             data: {

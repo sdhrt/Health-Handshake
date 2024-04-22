@@ -69,13 +69,16 @@ function PendingConnection({ email }: { email: string }) {
             <div>
                 <Label>Recieved</Label>
                 <Separator orientation="horizontal" />
+                <div className="text-sm text-muted-foreground hidden last:block">
+                    No connection request recieved pending...
+                </div>
                 {connection.recieve &&
                     connection.recieve.map((con) => (
                         <div
                             key={con._id}
                             className="border border-blue-400 my-1 p-2 rounded-sm"
                         >
-                            <div className="">
+                            <div>
                                 <Label>
                                     Requested by:{" "}
                                 </Label>
@@ -84,8 +87,9 @@ function PendingConnection({ email }: { email: string }) {
                                 </span>
                             </div>
                             <div>
-
-                                <span>For:{" "}{con.content}</span>
+                                <span>
+                                    For: {con.content}
+                                </span>
                             </div>
                             <div>
                                 <Label>
@@ -123,6 +127,9 @@ function PendingConnection({ email }: { email: string }) {
             <div>
                 <Label>Sent</Label>
                 <Separator orientation="horizontal" />
+                <div className="text-sm text-muted-foreground hidden last:block">
+                    No connection request sent pending...
+                </div>
                 {connection.sent &&
                     connection.sent.map((con) => (
                         <div

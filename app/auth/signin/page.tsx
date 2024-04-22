@@ -15,7 +15,7 @@ import Link from "next/link"
 export default async function AuthPage() {
     const session = await getServerSession(authOptions)
 
-    if (session) {
+    if (session?.user?.name) {
         redirect("/dashboard")
     }
 
