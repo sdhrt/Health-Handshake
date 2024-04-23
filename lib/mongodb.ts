@@ -1,9 +1,16 @@
 import mongoose from "mongoose"
 
+let isConnected = false
+
 export const connectMongoDB = async () => {
-    try {
-        await mongoose.connect(process.env.MONGODB_URI as string)
-    } catch (error) {
-        throw error
+    if (!isConnected) {
+        try {
+            await mongoose.connect(
+                process.env.MONGODB_URI as string
+            )
+            isConnected = true
+        } catch (error) {
+            throw error
+        }
     }
 }
