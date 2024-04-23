@@ -62,7 +62,11 @@ function PendingConnection({ email }: { email: string }) {
     }
 
     if (!connection) {
-        return <Spinner size={"sm"} />
+        return (
+            <div className="flex justify-center items-center">
+                <Spinner size={"lg"} />
+            </div>
+        )
     }
     return (
         <div className="">
@@ -70,7 +74,8 @@ function PendingConnection({ email }: { email: string }) {
                 <Label>Recieved</Label>
                 <Separator orientation="horizontal" />
                 <div className="text-sm text-muted-foreground hidden last:block">
-                    No connection request recieved pending...
+                    No connection request recieved
+                    pending...
                 </div>
                 {connection.recieve &&
                     connection.recieve.map((con) => (
