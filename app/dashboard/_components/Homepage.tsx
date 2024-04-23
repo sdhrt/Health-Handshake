@@ -18,7 +18,7 @@ export default function Homepage() {
     const [search, setSearch] = useState<string>("")
     const [industry, setIndustry] = useState<string>()
     const [services, setServices] = useState<string[]>([])
-    const [category, setCategory] = useState<string>("")
+    const [category, setCategory] = useState<string>()
 
     useEffect(() => {
         ;(async () => {
@@ -26,6 +26,7 @@ export default function Homepage() {
                 "/api/fetch/category",
                 {
                     method: "POST",
+                    cache: "force-cache",
                     headers: {
                         "Content-Type": "application/json",
                     },

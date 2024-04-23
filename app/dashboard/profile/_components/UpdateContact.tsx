@@ -39,6 +39,17 @@ function UpdateContact({
     }
 
     const addContact = async () => {
+        const numRegex = /^(\+977)?(9[678]\d{8})$/
+        const landLineRegex = /(\d{8})/
+        if (
+            !numRegex.test(input) ||
+            !landLineRegex.test(input)
+        ) {
+            toast({
+                title: "Invalid phone numbers",
+            })
+            return
+        }
         const response = await fetch(
             "/api/update/contact",
             {

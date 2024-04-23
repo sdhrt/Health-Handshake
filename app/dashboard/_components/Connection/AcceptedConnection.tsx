@@ -80,7 +80,7 @@ function AcceptedConnection({ email }: { email: string }) {
                             </div>
                             <div>
                                 <Label>Number: </Label>
-                                <div>
+                                <div className="text-muted-foreground flex flex-col text-sm">
                                     <div className="hidden last:block text-xs">
                                         Not avaiable
                                     </div>
