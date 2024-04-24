@@ -9,6 +9,7 @@ import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import GoogleLogin from "./GoogleLogin"
+import Link from "next/link"
 
 export const SignInForm = () => {
     const router = useRouter()
@@ -79,6 +80,11 @@ export const SignInForm = () => {
     }
     return (
         <div className="flex flex-col gap-y-4">
+            <div className="">
+                <h1 className="text-xl font-bold">
+                    Login to Health Handshake
+                </h1>
+            </div>
             <div className="flex flex-col gap-y-2">
                 <Label>Organization Email</Label>
                 <Input
@@ -101,6 +107,13 @@ export const SignInForm = () => {
                 <span className="font-bold">Log in</span>
             </Button>
             <GoogleLogin />
+            <div className="flex justify-center">
+                Don't have an account? &nbsp;
+                <Link href={"/auth/signup"}>
+                    <span className="text-blue-500 font-semibold">Sign up</span>
+                </Link>
+
+            </div>
         </div>
     )
 }

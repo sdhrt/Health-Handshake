@@ -1,50 +1,71 @@
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+import Image from "next/image"
 import { SignInForm } from "../_components/SignInForm"
 
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/lib/auth"
-import { redirect } from "next/navigation"
-import Link from "next/link"
-
-export default async function AuthPage() {
-    const session = await getServerSession(authOptions)
-
-    if (session?.user?.name) {
-        redirect("/dashboard")
-    }
-
+function page() {
     return (
-        <div className="w-screen h-screen flex items-center justify-center bg-[url('/images/login-background.jpg')] bg-center bg-cover">
-            <Card>
-                <CardHeader>
-                    <CardTitle>Log in</CardTitle>
-                    <CardDescription>
-                        Login in order to access Health
-                        Handshake
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <SignInForm />
-                    <div className="flex items-center justify-center gap-y-4 mt-4">
-                        <span className="opacity-50">
-                            New to HealthHandshake? &nbsp;
-                        </span>
-
-                        <Link
-                            href="/auth/signup"
-                            className="underline underline-offset-1 font-semibold text-nowrap"
-                        >
-                            Sign Up
-                        </Link>
+        <div className="flex w-screen justify-between">
+            <div className="hidden md:flex w-[60%]">
+                <div className="flex flex-col justify-between w-full pb-10 mb-20">
+                    <div className="flex p-14 gap-4">
+                        <div>
+                            <Image
+                                src="/icons/HealthHandshakeSquare.svg"
+                                alt="Icon"
+                                width={70}
+                                height={70}
+                            />
+                        </div>
+                        <div className="font-mono flex flex-col font-extrabold text-2xl justify-end">
+                            <h1>Health</h1>
+                            <h1>Handshake</h1>
+                        </div>
                     </div>
-                </CardContent>
-            </Card>
+                    <div className="w-[100%] flex flex-col items-center">
+                        <div className="flex items-center">
+                            <span className="text-4xl font-bold">
+                                Health
+                            </span>
+                            <Image
+                                src="/icons/handshake.png"
+                                alt="handshake"
+                                width={200}
+                                height={200}
+                            />
+                            <span className="text-4xl font-bold">
+                                Organizations
+                            </span>
+                        </div>
+                        <span className="font text-2xl w-[30ch]">
+                            Over{" "}
+                            <span className="font-extrabold">
+                                230
+                            </span>{" "}
+                            organizations have already
+                            joined health handshake.
+                        </span>
+                    </div>
+                    <div className="flex justify-center items-center">
+                        <div className="font-semibold">
+                            Join{" "}
+                            <span className="font-bold">
+                                Health Handshake
+                            </span>{" "}
+                            today{" "}
+                        </div>
+                        <Image
+                            src={"/icons/arrow.svg"}
+                            width={150}
+                            height={150}
+                            alt="arrow"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="flex justify-center items-center h-screen w-[40%] border-2 rounded-lg">
+                <SignInForm />
+            </div>
         </div>
     )
 }
+
+export default page

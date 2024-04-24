@@ -7,6 +7,7 @@ import { toast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import GoogleLogin from "./GoogleLogin"
+import Link from "next/link"
 
 export const SignUpForm = () => {
     const router = useRouter()
@@ -72,6 +73,11 @@ export const SignUpForm = () => {
 
     return (
         <div className="flex flex-col gap-y-4">
+            <div className="">
+                <h1 className="text-2xl font-bold">
+                    Join Health Handshake
+                </h1>
+            </div>
             <div className="flex flex-col gap-y-2">
                 <Label>Organization Name</Label>
                 <Input
@@ -105,6 +111,14 @@ export const SignUpForm = () => {
                 </span>
             </Button>
             <GoogleLogin />
+            <div className="flex justify-center">
+                Already have an account? &nbsp;
+                <Link href={"/auth/signin"}>
+                    <span className="text-blue-500 font-semibold">
+                        Sign in
+                    </span>
+                </Link>
+            </div>
         </div>
     )
 }
