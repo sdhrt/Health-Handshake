@@ -9,6 +9,7 @@ function page() {
                     <div className="flex p-14 gap-4">
                         <div>
                             <Image
+                                className="rounded-sm"
                                 src="/icons/HealthHandshakeSquare.svg"
                                 alt="Icon"
                                 width={70}
@@ -44,10 +45,10 @@ function page() {
                             joined health handshake.
                         </span>
                     </div>
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-end items-center mr-10">
                         <div className="font-semibold">
                             Join{" "}
-                            <span className="font-bold">
+                            <span className="font-bold underline underline-offset-1">
                                 Health Handshake
                             </span>{" "}
                             today{" "}
