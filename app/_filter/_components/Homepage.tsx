@@ -6,7 +6,6 @@ import FilterIndustry from "./FilterIndustry"
 import FilterServices from "./FilterServices"
 import Organization from "./Organization"
 import FilterSearch from "./FilterSearch"
-import UpdateCategoryDrawer from "../profile/_components/UpdateCategoryDrawer"
 import { useSession } from "next-auth/react"
 import { Spinner } from "@/components/ui/spinner"
 import { Separator } from "@/components/ui/separator"
@@ -46,14 +45,6 @@ export default function Homepage() {
         return (
             <div className="flex h-screen items-center justify-center">
                 <Spinner size={"icon"} />
-            </div>
-        )
-    }
-
-    if (!category) {
-        return (
-            <div className="flex w-screen h-screen items-center justify-center">
-                <UpdateCategoryDrawer />
             </div>
         )
     }

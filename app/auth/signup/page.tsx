@@ -62,7 +62,7 @@ function page() {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center items-center h-screen w-[40%] border-2 rounded-lg">
+            <div className="flex justify-center items-center h-screen w-[40%] border-l rounded-lg">
                 <SignUpForm />
             </div>
         </div>

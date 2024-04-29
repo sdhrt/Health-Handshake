@@ -17,7 +17,7 @@ export async function UserHoverCard() {
                         variant={"ghost"}
                         asChild
                     >
-                        <Link href="/dashboard/profile">
+                        <Link href="/profile">
                             <User />
                         </Link>
                     </Button>

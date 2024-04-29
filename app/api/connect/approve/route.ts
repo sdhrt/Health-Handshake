@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({
             data: {
                 message:
-                    "You have approved the request, if approved by admin, you can find the contact details in the accepted tabs",
+                    "You have approved the request, you can find the contact details in the accepted tabs",
             },
         })
     } else {

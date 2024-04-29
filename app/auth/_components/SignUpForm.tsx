@@ -6,8 +6,14 @@ import { Label } from "@/components/ui/label"
 import { toast } from "@/components/ui/use-toast"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import GoogleLogin from "./GoogleLogin"
 import Link from "next/link"
+import {
+    Select,
+    SelectContent,
+    SelectTrigger,
+    SelectValue,
+    SelectItem,
+} from "@/components/ui/select"
 
 export const SignUpForm = () => {
     const router = useRouter()
@@ -15,6 +21,7 @@ export const SignUpForm = () => {
         name: "",
         email: "",
         password: "",
+        category: "",
     })
 
     const handleChange = (e: any) => {
@@ -22,8 +29,38 @@ export const SignUpForm = () => {
         setInput((prev) => ({ ...prev, [name]: value }))
     }
 
+    const handleSelect = (value: string) => {
+        setInput((prev) => ({ ...prev, category: value }))
+    }
+
     const handleSubmit = async (e: any) => {
         e.preventDefault()
+
+        if (input.password == "") {
+            toast({
+                title: "Passowrd cannot be empty",
+            })
+            return
+        }
+        if (input.email == "") {
+            toast({
+                title: "Email cannot be empty",
+            })
+            return
+        }
+        if (input.name == "") {
+            toast({
+                title: "Name cannot be empty",
+            })
+            return
+        }
+        if (input.category == "") {
+            toast({
+                title: "Please choose a category",
+            })
+            return
+        }
+
         ;(() => {
             toast({
                 title: "Signing up...",
@@ -105,12 +142,30 @@ export const SignUpForm = () => {
                     autoComplete="off"
                 />
             </div>
+            <div className="flex flex-col gap-y-2">
+                <Label>Choose category</Label>
+                <Select onValueChange={handleSelect}>
+                    <SelectTrigger>
+                        <SelectValue placeholder="Category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="health">
+                            Health Institute
+                        </SelectItem>
+                        <SelectItem value="institute">
+                            Private Institute
+                        </SelectItem>
+                        <SelectItem value="government" disabled>
+                            Government
+                        </SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
             <Button className="mt-4" onClick={handleSubmit}>
                 <span className="font-semibold">
                     Sign Up
                 </span>
             </Button>
-            <GoogleLogin />
             <div className="flex justify-center">
                 Already have an account? &nbsp;
                 <Link href={"/auth/signin"}>

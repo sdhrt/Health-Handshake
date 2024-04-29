@@ -33,6 +33,7 @@ function PendingConnection({ email }: { email: string }) {
             )
             const { data } = await response.json()
             setConnection(data)
+            console.log(data)
         })()
     }, [])
 
@@ -115,16 +116,6 @@ function PendingConnection({ email }: { email: string }) {
                                         Approve
                                     </Button>
                                 )}
-                            </div>
-                            <div>
-                                <Label>
-                                    Approved by admin:{" "}
-                                </Label>
-                                <span>
-                                    {con.adminApprove
-                                        ? "approved"
-                                        : "not approved"}
-                                </span>
                             </div>
                         </div>
                     ))}

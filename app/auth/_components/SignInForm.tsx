@@ -106,7 +106,6 @@ export const SignInForm = () => {
             <Button className="mt-4" onClick={handleSubmit}>
                 <span className="font-bold">Log in</span>
             </Button>
-            <GoogleLogin />
             <div className="flex justify-center">
                 Don't have an account? &nbsp;
                 <Link href={"/auth/signup"}>

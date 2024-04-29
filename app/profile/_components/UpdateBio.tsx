@@ -62,7 +62,7 @@ function UpdateBio({ userEmail }: { userEmail: string }) {
     }
 
     return (
-        <div className=" flex flex-col mt-2 gap-1">
+        <div className=" flex flex-col gap-1">
             <Label
                 htmlFor="Bio"
                 className="ml-1 flex text-md"
@@ -76,7 +76,7 @@ function UpdateBio({ userEmail }: { userEmail: string }) {
                             ? `${input}`
                             : `Update your bio`
                     }
-                    className="h-[10vh] text-muted-foreground focus:text-black"
+                    className="h-[10vh] text-muted-foreground focus:text-black bg-white hidden-scroll"
                     value={input}
                     onChange={handleChange}
                 />

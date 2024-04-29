@@ -17,7 +17,7 @@ function OrganizationCard({ org }: { org: User }) {
                     {org.name}
                 </CardTitle>
                 {org.bio && (
-                    <CardDescription className="text-muted-foreground text-sm tracking-tight max-h-[80px] overflow-y-scroll">
+                    <CardDescription className="text-muted-foreground text-sm tracking-tight max-h-[80px] overflow-y-scroll hidden-scroll">
                         {org.bio}
                     </CardDescription>
                 )}

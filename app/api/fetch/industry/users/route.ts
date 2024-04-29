@@ -4,24 +4,22 @@ import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
     const body = await request.json()
-    const {
-        email,
-    }: { email: string} = body
+    const { industry }: { industry: string } = body
 
     await connectMongoDB()
-    const { data } = await userModel
-        .findOne({ email })
-        .select("data.industry")
-    
-    if (data) {
+
+    try {
+        const data = await userModel.find({
+            "data.industry": industry,
+        })
+
         return NextResponse.json({
             status: 200,
             data: data,
         })
-    } else {
+    } catch (error) {
         return NextResponse.json({
-            status: 200,
-            data: "",
+            error: error,
         })
     }
 }

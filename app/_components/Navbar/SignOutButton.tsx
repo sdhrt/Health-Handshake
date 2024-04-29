@@ -15,9 +15,13 @@ function SignOutButton() {
         <Button
             onClick={handleSignOut}
             variant={"ghost"}
-            className="text-muted-foreground"
+            className="w-max"
+            asChild
         >
-            <LogOutIcon />
+            <div className="flex items-center justify-center gap-2 py-1 rounded-lg transition-colors hover:text-foreground ">
+                <LogOutIcon className="h-5 w-5" />
+                <span className="text-xl font-semibold">Sign Out</span>
+            </div>
         </Button>
     )
 }

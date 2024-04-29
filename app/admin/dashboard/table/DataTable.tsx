@@ -44,8 +44,9 @@ function DataTable() {
         )
         const { data } = await response.json()
         if (data.error) {
+            console.log(data.error)
             toast({
-                title: `${data.error}`,
+                title: `Couldn't delete the request`,
             })
         } else {
             toast({
@@ -90,7 +91,7 @@ function DataTable() {
                         <TableHead>Reciever</TableHead>
                         <TableHead>Content</TableHead>
                         <TableHead>Date</TableHead>
-                        <TableHead>Reject</TableHead>
+                        <TableHead>Delete</TableHead>
                         <TableHead>Approve</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -109,8 +110,10 @@ function DataTable() {
                                 <TableCell>
                                     {tData.reciever}
                                 </TableCell>
-                                <TableCell className="max-w-96 line-clamp-3 overflow-y-scroll">
+                                <TableCell className="max-w-[40ch]">
+                                    <div className="overflow-y-scroll hidden-scroll max-h-12">
                                     {tData.content}
+                                    </div>
                                 </TableCell>
                                 <TableCell>
                                     {new Date(

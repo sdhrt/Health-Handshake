@@ -5,7 +5,7 @@ import bcrypt from "bcrypt"
 
 export async function POST(request: NextRequest) {
     const body = await request.json()
-    const { name, email, password } = body.input
+    const { name, email, password, category } = body.input
 
     if (!name || !email || !password) {
         return NextResponse.json({
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
         })
     }
 
-    const data = {}
+    const data = { category: category }
     const hash = await bcrypt.hash(password, 10) // 10 is saltRounds
     const user = await userModel.create({
         name,

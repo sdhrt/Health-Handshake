@@ -3,6 +3,7 @@ import { connectModel } from "@/model/connectionModel"
 import { userModel } from "@/model/userModel"
 import { NextRequest, NextResponse } from "next/server"
 
+// /api/connect/fetch/org/accepted
 export async function POST(req: NextRequest) {
     const body = await req.json()
     const { email } = body
@@ -10,7 +11,7 @@ export async function POST(req: NextRequest) {
 
     const connect = await connectModel
         .find({
-            sender: email,
+            reciever: email,
             adminApprove: true,
             approved: true,
         })
@@ -29,6 +30,7 @@ export async function POST(req: NextRequest) {
             .select("-password")
         const { name, email, data } = user
         const { contact } = data
+        console.log(con)
         const { content } = con
         users.push({ name, email, content, contact })
     })

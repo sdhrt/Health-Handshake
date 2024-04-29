@@ -17,7 +17,7 @@ async function page() {
     const userEmail: string = session?.user?.email as string
 
     return (
-        <div className="mt-6 flex justify-center">
+        <div className="pt-6 flex justify-center bg-blue-100 h-screen">
             <div className="grid grid-cols-1 w-[30%]">
                 <UpdateInfo />
                 <UpdateBio userEmail={userEmail} />

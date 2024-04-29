@@ -1,15 +1,8 @@
 const industry: string[] = [
     "Transportation",
-    "Pharmaceutical",
-    "Telecommunications",
-    "Manufacturing",
-    "Mining",
-    "Hospitality",
-    "Media",
-    "Agriculture",
-    "Computer technology",
+    "Hospitals",
+    "Clinics",
     "Education",
-    "Health Care",
     "Insurance",
     "Banking",
 ]

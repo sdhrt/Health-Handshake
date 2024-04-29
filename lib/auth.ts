@@ -1,5 +1,4 @@
 import { NextAuthOptions } from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
 import { connectMongoDB } from "./mongodb"
 import { userModel } from "@/model/userModel"
 import bcrypt from "bcrypt"
@@ -14,41 +13,7 @@ export const authOptions = {
     pages: {
         signIn: "/auth/signin",
     },
-    callbacks: {
-        async signIn({ account, profile }) {
-            if (account?.provider === "google") {
-                const data = {
-                    name: profile?.name,
-                    email: profile?.email,
-                    provider: account.provider,
-                }
-                await connectMongoDB()
-                const exists = await userModel.findOne({
-                    email: data.email,
-                })
-                if (exists) {
-                    return true
-                }
-
-                const user = await userModel.create({
-                    name: data.name,
-                    email: data.email,
-                    data: {},
-                })
-                if (user) {
-                    return true
-                }
-            }
-            return true
-        },
-    },
     providers: [
-        GoogleProvider({
-            clientId: process.env
-                .GOOGLE_CLIENT_ID as string,
-            clientSecret: process.env
-                .GOOGLE_CLIENT_SECRET as string,
-        }),
         CredentialsProvider({
             name: "credentials",
             credentials: {
