@@ -3,7 +3,7 @@ import SignUpForm from "../_components/SignUpForm"
 
 function page() {
     return (
-        <div className="flex w-screen justify-between">
+        <div className="flex w-screen justify-between bg-[#ffe6cd]">
             <div className="hidden md:flex w-[60%]">
                 <div className="flex flex-col justify-between w-full pb-10 mb-20">
                     <div className="flex p-14 gap-4">
@@ -62,7 +62,7 @@ function page() {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center items-center h-screen w-[40%] border-l rounded-lg">
+            <div className="flex justify-center items-center h-screen w-[40%] border-l-2 border-black">
                 <SignUpForm />
             </div>
         </div>
