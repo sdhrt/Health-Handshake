@@ -27,7 +27,7 @@ function DataTable() {
             const responseData = await response.json()
             setData(responseData.data)
         })()
-    }, [data])
+    }, [])
 
     const handleReject = async (id: Types.ObjectId) => {
         const response = await fetch(
