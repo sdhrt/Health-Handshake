@@ -18,7 +18,7 @@ function SignOutButton() {
             className="w-max"
             asChild
         >
-            <div className="flex items-center justify-center gap-2 py-1 rounded-lg transition-colors hover:text-foreground ">
+            <div className="flex items-center justify-center gap-2 py-1 rounded-lg transition-colors hover:text-foreground hover:cursor-pointer">
                 <LogOutIcon className="h-5 w-5" />
                 <span className="text-xl font-semibold">Sign Out</span>
             </div>

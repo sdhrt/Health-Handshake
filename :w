@@ -20,11 +20,9 @@ function TieUp() {
     }
 
     return (
-        <div className="mt-6 flex flex-col items-center justify-center gap-4">
-            <div className="flex gap-2 items-center justify-center">
-                <span className="font-semibold">
-                    Tie up with
-                </span>
+        <div className="mt-4 flex flex-col justify-center gap-4">
+            <div className="flex gap-2 items-center justify-center w-max">
+                <span>Tie up with</span>
                 <SelectIndustry handleFn={handleSelect} />
             </div>
             {select && (

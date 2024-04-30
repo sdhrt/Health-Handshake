@@ -15,11 +15,8 @@ async function page() {
         redirect("/admin")
     }
     return (
-        <main className="flex justify-center bg-blue-100 h-screen p-4">
+        <main className="flex justify-center bg-[#fff] h-screen">
             <div className="flex flex-col items-center gap-4">
-                <h1 className="text-2xl font-semibold">
-                    Welcome to Health Handshake
-                </h1>
                 <div>
                     <IndustryAlert
                         email={

@@ -22,19 +22,19 @@ function InstituteGrid() {
         })()
     }, [])
     return (
-        <div className="grid grid-cols-3 gap-1">
+        <div className="grid grid-flow-col w-full gap-4 auto-cols-fr">
             {industries &&
                 industries.map((industry, index) => (
                     <div
                         key={index}
-                        className="bg-blue-300 rounded-sm p-1 flex justify-center"
+                        className="bg-[#cff6ff] rounded-xl px-2 flex flex-1 justify-center"
                     >
-                        <div className="flex gap-2 items-center justify-end h-24">
-                            <span className="font-semibold text-[#141520] text-4xl">
+                        <div className="flex gap-2 items-center justify-end h-16">
+                            <span className="font-semibold text-[#141920] text-4xl">
                                 {industry.count}
                             </span>
-                            <span className="text-xl ">
-                            {industry._id}
+                            <span className="text-xl">
+                                {industry._id}
                             </span>
                         </div>
                     </div>

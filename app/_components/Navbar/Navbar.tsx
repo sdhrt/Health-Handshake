@@ -8,7 +8,7 @@ import Image from "next/image"
 
 function Navbar() {
     return (
-        <nav className="flex items-center justify-between w-screen h-16 px-4 lg:px-24 bg-[#141920] shadow-md shadow-blue-200/80">
+        <nav className="flex items-center justify-between max-w-screen h-16 px-4 lg:px-24 bg-[#141920] shadow-md shadow-blue-200/80">
             <div>
                 <Link
                     prefetch={true}
