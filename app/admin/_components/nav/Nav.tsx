@@ -12,15 +12,15 @@ function Nav() {
                         href="/admin"
                         className="flex items-center justify-center gap-2 py-1 rounded-lg text-muted-foreground transition-colors hover:text-foreground "
                     >
-                        <Home className="h-5 w-5" />
-                        <span className="">Home</span>
+                        <Home className="h-5 w-5 text-blue-700 font-semibold" />
+                        <span className="text-blue-700 font-semibold">Home</span>
                     </Link>
                     <Link
                         href="/admin/dashboard"
                         className="flex items-center justify-center gap-2 py-1 rounded-lg text-muted-foreground transition-colors hover:text-foreground "
                     >
-                        <Activity className="h-5 w-5" />
-                        <span className="">Dashboard</span>
+                        <Activity className="h-5 w-5 text-blue-700 font-semibold" />
+                        <span className="text-blue-700 font-semibold">Dashboard</span>
                     </Link>
                 </div>
                 <div className="flex items-center justify-center gap-2 py-1 rounded-lg text-muted-foreground transition-colors hover:text-foreground ">

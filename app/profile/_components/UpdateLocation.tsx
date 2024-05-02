@@ -63,7 +63,7 @@ function UpdateLocation({
 
     return (
         <div className="flex justify-between items-center mt-2">
-            <Label>Location</Label>
+            <Label className="text-blue-800">Location</Label>
             <Input
                 className="w-[240px]"
                 onChange={handleChange}

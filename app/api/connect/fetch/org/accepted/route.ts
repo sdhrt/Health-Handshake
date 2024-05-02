@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
 
     const connect = await connectModel
         .find({
-            reciever: email,
+            sender: email,
             adminApprove: true,
             approved: true,
         })
@@ -30,7 +30,6 @@ export async function POST(req: NextRequest) {
             .select("-password")
         const { name, email, data } = user
         const { contact } = data
-        console.log(con)
         const { content } = con
         users.push({ name, email, content, contact })
     })

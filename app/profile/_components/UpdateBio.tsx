@@ -65,16 +65,16 @@ function UpdateBio({ userEmail }: { userEmail: string }) {
         <div className=" flex flex-col gap-1">
             <Label
                 htmlFor="Bio"
-                className="ml-1 flex text-md"
+                className="ml-1 flex text-md text-blue-800"
             >
-                Bio
+                About
             </Label>
             <div className="flex flex-col  items-end gap-1">
                 <Textarea
                     placeholder={
                         input
                             ? `${input}`
-                            : `Update your bio`
+                            : `Organization's short introduction`
                     }
                     className="h-[10vh] text-muted-foreground focus:text-black bg-white hidden-scroll"
                     value={input}

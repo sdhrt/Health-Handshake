@@ -76,7 +76,7 @@ function UpdateContact({
 
     return (
         <div>
-            <div className="flex justify-between items-center mt-2">
+            <div className="flex justify-between items-center mt-2 text-blue-800">
                 <Label>Contact</Label>
                 <div className="flex">
                     <Input

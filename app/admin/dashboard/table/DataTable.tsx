@@ -16,6 +16,7 @@ import {
 } from "@radix-ui/react-icons"
 import { Types } from "mongoose"
 import { toast } from "@/components/ui/use-toast"
+import { cn } from "@/lib/utils"
 
 function DataTable() {
     const [data, setData] = React.useState<any[]>([])
@@ -44,7 +45,7 @@ function DataTable() {
         )
         const { data } = await response.json()
         if (data.error) {
-            console.log(data.error)
+            throw data.error
             toast({
                 title: `Couldn't delete the request`,
             })
@@ -98,7 +99,15 @@ function DataTable() {
                 <TableBody>
                     {data &&
                         data.map((tData) => (
-                            <TableRow key={tData._id}>
+                            <TableRow
+                                key={tData._id}
+                                className={cn(
+                                    !tData.adminApprove &&
+                                        "bg-green-100 hover:bg-green-300",
+                                    tData.adminApprove && "bg-gray-200"
+
+                                )}
+                            >
                                 <TableCell>
                                     {tData.adminApprove
                                         ? "approved"
@@ -112,7 +121,7 @@ function DataTable() {
                                 </TableCell>
                                 <TableCell className="max-w-[40ch]">
                                     <div className="overflow-y-scroll hidden-scroll max-h-12">
-                                    {tData.content}
+                                        {tData.content}
                                     </div>
                                 </TableCell>
                                 <TableCell>

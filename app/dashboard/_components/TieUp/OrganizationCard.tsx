@@ -11,9 +11,9 @@ import ConnectAlert from "./ConnectAlert"
 
 function OrganizationCard({ org }: { org: User }) {
     return (
-        <Card className="shadow-lg w-64 min-w-64 my-1 hover:scale-[1.02] hover:transition">
+        <Card className="shadow-lg w-64 min-w-64 my-1 hover:scale-[1.02] hover:transition bg-green-200/30">
             <CardHeader>
-                <CardTitle className="break-all">
+                <CardTitle className="break-words capitalize">
                     {org.name}
                 </CardTitle>
                 {org.bio && (

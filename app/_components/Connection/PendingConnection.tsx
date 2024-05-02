@@ -33,7 +33,6 @@ function PendingConnection({ email }: { email: string }) {
             )
             const { data } = await response.json()
             setConnection(data)
-            console.log(data)
         })()
     }, [])
 

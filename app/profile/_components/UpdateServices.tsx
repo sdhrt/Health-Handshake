@@ -65,7 +65,7 @@ function UpdateServices({
     return (
         <div>
             <div className="flex justify-between items-center mt-2 max-w-[100%]">
-                <Label>Service</Label>
+                <Label className="text-blue-800">Service</Label>
                 <div className="flex">
                     <Input
                         className="mr-1"

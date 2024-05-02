@@ -51,7 +51,7 @@ function UpdateInfo() {
         <div>
             <div className="flex flex-col px-4 py-6 gap-y-2 bg-neutral-100 rounded-lg">
                 <div className="flex items-center">
-                    <Label className="text-nowrap min-w-[50%]">
+                    <Label className="text-nowrap min-w-[50%] text-blue-800">
                         Organization Name
                     </Label>
                     <Input
@@ -64,7 +64,7 @@ function UpdateInfo() {
                     />
                 </div>
                 <div className="flex items-center">
-                    <Label className="text-nowrap min-w-[50%]">
+                    <Label className="text-nowrap min-w-[50%]  text-blue-800">
                         Organization Email
                     </Label>
                     <Input

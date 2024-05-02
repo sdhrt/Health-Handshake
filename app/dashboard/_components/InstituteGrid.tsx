@@ -34,7 +34,7 @@ function InstituteGrid() {
                                 {industry.count}
                             </span>
                             <span className="text-xl ">
-                            {industry._id}
+                                {industry._id}
                             </span>
                         </div>
                     </div>

@@ -20,9 +20,9 @@ function TieUp() {
     }
 
     return (
-        <div className="mt-4 flex flex-col justify-center gap-4">
+        <div className="mt-14 flex flex-col justify-center gap-4">
             <div className="flex flex-col gap-2 items-center">
-                <div className="font-semibold">
+                <div className="font-semibold text-blue-700 text-xl">
                     Love to tie up with
                 </div>
                 <SelectIndustry handleFn={handleSelect} />
@@ -31,8 +31,8 @@ function TieUp() {
                 <div className="flex flex-col items-center">
                     <Input
                         onChange={handleSearch}
-                        placeholder="Search..."
-                        className="max-w-[180px]"
+                        placeholder="Search by name..."
+                        className="max-w-[180px] border-2 border-black"
                     />
                     <SelectedIndustry
                         industry={select}

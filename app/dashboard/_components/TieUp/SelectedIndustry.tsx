@@ -30,7 +30,7 @@ function SelectedIndustry({
             )
             const { data, error } = await response.json()
             if (error) {
-                console.log("error fetching data")
+                throw error
             }
             setOrg(data)
         })()

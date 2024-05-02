@@ -21,10 +21,11 @@ function page() {
                             <h1>Handshake</h1>
                         </div>
                     </div>
-                    <div className="w-[100%] flex flex-col items-center">
+                    <div className="w-[100%] flex flex-col items-center justify-center">
                         <div className="flex items-center">
-                            <span className="text-4xl font-bold">
+                            <span className="text-3xl font-bold">
                                 Health
+                                Institutes
                             </span>
                             <Image
                                 src="/icons/handshake.png"
@@ -32,7 +33,8 @@ function page() {
                                 width={200}
                                 height={200}
                             />
-                            <span className="text-4xl font-bold">
+                            <span className="text-3xl font-bold">
+                                Other
                                 Organizations
                             </span>
                         </div>

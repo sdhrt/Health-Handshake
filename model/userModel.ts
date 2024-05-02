@@ -6,7 +6,6 @@ mongoose.Promise = global.Promise
 const userDataSchema = new Schema({
     category: {
         type: String,
-        enum: ["health", "institute", "government"],
     },
     industry: {
         type: String,
