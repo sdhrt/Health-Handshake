@@ -1,4 +1,5 @@
 import DataTable from "./table/DataTable"
+import UnreadRequest from "./table/UnreadRequest"
 async function AdminDash() {
     return (
         <div>
@@ -12,6 +13,9 @@ async function AdminDash() {
                             Here&apos;s a list of connection
                             requests
                         </p>
+                    </div>
+                    <div>
+                        <UnreadRequest />
                     </div>
                 </div>
                 <DataTable />
